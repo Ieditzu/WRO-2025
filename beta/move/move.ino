@@ -12,7 +12,7 @@ void setup() {
   pinMode(IN2, OUTPUT);
   pinMode(ENA, OUTPUT);
 
-  analogWrite(ENA, 204);
+  digitalWrite(ENA, HIGH);
 
   steeringServo.attach(SERVO_PIN);
   center();
@@ -24,7 +24,7 @@ void loop() {
   left();
   delay(1000);
 
-  analogWrite(ENA, 255);
+  digitalWrite(ENA, HIGH);
 
   forward();
   delay(2000);
@@ -50,6 +50,7 @@ void backward() {
 void stop() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
+  digitalWrite(ENA, LOW);
 }
 
 void left() {
