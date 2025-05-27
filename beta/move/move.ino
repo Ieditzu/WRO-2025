@@ -1,30 +1,37 @@
 #include <Servo.h>
 
+// Motor driver pins
 const int IN1 = 7;
 const int IN2 = 8;
-const int ENA = 9;
+const int ENA = 9;  // Enable pin (PWM capable)
 
+// Servo pin
 const int SERVO_PIN = 10;
 Servo steeringServo;
 
+// Steering angles
+#define STEERING_LEFT 60
+#define STEERING_CENTER 90
+#define STEERING_RIGHT 120
+
 void setup() {
+  // Motor setup
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(ENA, OUTPUT);
 
-  digitalWrite(ENA, HIGH);
-
+  // Servo setup
   steeringServo.attach(SERVO_PIN);
   center();
 
+  // Initially stop
   stop();
 }
 
 void loop() {
+  // Demo movement pattern
   left();
   delay(1000);
-
-  digitalWrite(ENA, HIGH);
 
   forward();
   delay(2000);
@@ -40,27 +47,29 @@ void loop() {
 void forward() {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
+  analogWrite(ENA, 150);  // Adjust speed (0-255)
 }
 
 void backward() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
+  analogWrite(ENA, 150);  // Adjust speed (0-255)
 }
 
 void stop() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
-  digitalWrite(ENA, LOW);
+  analogWrite(ENA, 0);
 }
 
 void left() {
-  steeringServo.write(60);
+  steeringServo.write(STEERING_LEFT);
 }
 
 void right() {
-  steeringServo.write(120);
+  steeringServo.write(STEERING_RIGHT);
 }
 
 void center() {
-  steeringServo.write(90);
+  steeringServo.write(STEERING_CENTER);
 }
