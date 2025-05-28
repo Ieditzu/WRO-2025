@@ -17,22 +17,26 @@ Cost Analysis
 Resources
 Folder Structure
 License
-👥 The Team
-Popescu Curutchi Ciprian
-Age: 14
-Bogdan Petriceicu Hasdeu Middle School No. 12, Constanța
+## 👥 The Team
+
+**Popescu Curutchi Ciprian**  
+*Age*: 14  
+*School*: Bogdan Petriceicu Hasdeu Middle School No. 12, Constanța  
 Hi! I’m Ciprian from Romania, and this is my second WRO season. This is my first season in Future Engineers, previously competing in Future Innovators. I am passionate about robotics, electronics, algorithms, and technology. My interests also include volleyball, programming, and chess.
 
-Eduard Perjoc
-Age: 14
-Ion Jalea Middle School No. 12, Constanța
+---
+
+**Eduard Perjoc**  
+*Age*: 14  
+*School*: Ion Jalea Middle School No. 12, Constanța  
 Hi! I’m Eduard from Romania, and this is my third WRO season with Ciprian and Alin. I have participated in RoboMission multiple times, gaining valuable experience in robotics and problem-solving.
 
-Alin
-Age: 14
-Decebal Theoretical School, Constanța
-Hi! I’m Alin from Romania, and this is my second WRO season with Ciprian and Eduard. I am passionate about technology, robotics, and hands-on experimentation.
+---
 
+**Alin**  
+*Age*: 14  
+*School*: Decebal Theoretical School, Constanța  
+Hi! I’m Alin from Romania, and this is my second WRO season with Ciprian and Eduard. I am passionate about technology, robotics, and hands-on experimentation.
 🎯 Challenge Overview
 The WRO 2025 Future Engineers challenge tasks teams with developing a fully autonomous vehicle capable of navigating a dynamic, randomized racetrack using sensors, computer vision, and advanced control algorithms.
 Key objectives:
