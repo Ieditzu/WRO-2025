@@ -49,6 +49,8 @@ Hi! I’m Eduard from Romania, and this is my third WRO season with Ciprian and 
 *School*: Decebal Theoretical School, Constanța  
 Hi! I’m Alin from Romania, and this is my second WRO season with Ciprian and Eduard. I am passionate about technology, robotics, and hands-on experimentation.
 
+![image](https://github.com/user-attachments/assets/c554b07e-b1a7-4924-b182-03efca5e6113)
+
 ## 📦 Folder Structure
 
 ```
