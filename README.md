@@ -10,7 +10,7 @@ Repository of the Pikart team competing in the World Robot Olympiad (WRO) 2025, 
 - Challenge Overview
 - Our Robot
 - Mobility Management
-- Drivebase
+- Components
 - Motor & Motor Driver
 - Steering & Servo
 - Chassis & Component Mounting
@@ -18,7 +18,6 @@ Repository of the Pikart team competing in the World Robot Olympiad (WRO) 2025, 
 - Power and Sense Management
 - Obstacle Management
 - Cost Analysis
-- Resources
 - Folder Structure
 - License
 
@@ -111,14 +110,26 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 ---
 
-## ⚙️ Drivebase
+## ⚙️ Components
 
 - Motor – 30:1 Micro Metal Pololu Gearmotor HPCB
-- Voltage: 12V  
-- No-load Speed: 1000 RPM  
-- Stall Torque: ~0.4 kg·cm  
-- Motor Driver – L298N  
-- Model: TB6612FNG  
+- Servo Motor MG955
+
+ ![image](https://github.com/user-attachments/assets/11d42a7f-64f2-4038-b62e-221c5efcb710)
+
+  
+- Arduino MEGA
+
+ ![image](https://github.com/user-attachments/assets/7280ac78-b58e-419f-834f-f0dbf24b9b35)
+  
+- Raspberry Pi 5
+ 
+ ![image](https://github.com/user-attachments/assets/30ba5574-37bf-44aa-8b50-c0e504fc640a)
+ 
+- Motor Driver – L298N
+  
+ ![image](https://github.com/user-attachments/assets/153e4217-f7d3-4cfc-8475-6489bd2b2e20)
+
 - Operating Voltage: 2.5V–13.5V  
 - PWM Frequency: Up to 100 kHz  
 
@@ -156,12 +167,11 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 ## 🛠️ Power and Sense Management
 
-- Controller: Arduino Nano ESP32  
+- Controller: Arduino MEGA
 - Battery: Li-Po 3S 450mAh (11.1V)  
-- IMU: BMI088 for motion and stability  
-- Camera: OpenMV H7 for real-time vision processing  
-- Distance Sensor: JS40F IR for obstacle detection  
-- Voltage Regulator: L7805CV for stable 5V output  
+- Camera: TRUST Camera
+- 2nd Controller: Raspberry Pi 5
+- Motor driver: L29N
 
 ---
 
@@ -169,14 +179,11 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 | Component                | Voltage | Avg Current | Peak Current |
 |--------------------------|---------|-------------|--------------|
-| Arduino Nano ESP32       | 5V      | 200mA       | 500mA        |
-| Drive Motor (x2)         | 12V     | 240mA       | 3.2A         |
-| Steering Servo MG90S     | 5V      | 120mA       | 500mA        |
-| OpenMV H7 Camera         | 3.3V/5V | 300mA       | 400mA        |
-| IMU Sensor BMI088        | 3.3V    | 3.2mA       | 4mA          |
-| JS40F Distance Sensor    | 5V      | 15mA        | 20mA         |
-| TB6612FNG Motor Driver   | 5V      | 50mA        | 100mA        |
-| Voltage Regulator        | 7.4V→5V | -           | -            |
+| Arduino MEGA             | 5V      | 200mA       | 500mA        |
+| Motor Driver L298N       | 12V     | 240mA       | 3.2A         |
+| Steering Servo MG955     | 5V      | 120mA       | 500mA        |
+| TRUST Camera             | 3.3V/5V | 300mA       | 400mA        |
+| Raspberry Pi 5           | 7.4V→5V | -           | -            |
 
 ---
 ## 💰 Cost Analysis
