@@ -30,7 +30,9 @@ Repository of the Pikart team competing in the World Robot Olympiad (WRO) 2025, 
 *School*: Bogdan Petriceicu Hasdeu Middle School No. 12, Constanța  
 Hi! I’m Ciprian from Romania, and this is my second WRO season. This is my first season in Future Engineers, previously competing in Future Innovators.I am passionate about robotics, electronics, algorithms, and technology.My interests also include volleyball, programming, and gaming .
 
-![csm-constagasnta-grup](https://github.com/user-attachments/assets/13d6e032-2483-4e4a-8597-82b37fad738d)
+
+![csm-constanta-minivolei-turneu-tulcea-2024-49 (1) (1)](https://github.com/user-attachments/assets/bfb10549-500d-4ea1-ae3e-566cc2811c6b)
+
 
 ---
 
