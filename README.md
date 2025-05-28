@@ -260,16 +260,21 @@ _To be completed – How the robot executes parallel parking._
 
 **Camera Processing (Sample Code):**
 ```python
-# Detect Blobs
-red_blobs = img.find_blobs(red_threshold, ...)
-green_blobs = img.find_blobs(green_threshold, ...)
-blue_blobs = img.find_blobs(blue_threshold, ...)
-orange_blobs = img.find_blobs(orange_threshold, ...)
-# Determine Direction
-if direction == 0:
-    if orange_line and not is_invalid_orange(orange_line, red_blobs):
-        direction = 2  # Orange line → right turn
-    elif blue_line:
-        direction = 1  # Blue line → left turn
-# Send Direction Command
-uart.write(str(direction) + '\n')
+red':    [(0, 120, 70), (10, 255, 255), (170, 120, 70), (180, 255, 255)],
+    'green':  [(36, 50, 50), (89, 255, 255)],
+    'blue':   [(90, 50, 50), (140, 255, 255)],
+    'yellow': [(20, 100, 100), (30, 255, 255)]
+}
+
+def find_largest_contour(mask):
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        return max(contours, key=cv2.contourArea)
+    return None
+
+# Serial communication setup
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port as needed
+time.sleep(2)  # Wait for Arduino to reset and be ready
+
+
+
