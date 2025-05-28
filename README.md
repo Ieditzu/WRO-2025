@@ -39,7 +39,7 @@ Hi! I’m Ciprian from Romania, and this is my second WRO season. This is my fir
 *School*: Ion Jalea Middle School No. 12, Constanța  
 Hi! I’m Eduard from Romania, and this is my third WRO season with Ciprian and Alin. I have participated in RoboMission multiple times, gaining valuable experience in robotics and problem-solving.
 
-![WhatsApp Image 2025-05-28 at 21 54 13](https://github.com/user-attachments/assets/dc90fd00-9ec2-4441-911b-29a46774bdab)
+![WhatsApp Image 2025-05-28 at 21 54 13 (1)](https://github.com/user-attachments/assets/81255d64-b4a4-4be4-8f59-5836dd6e46b9)
 
 ---
 
