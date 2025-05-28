@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import serial
 import time
 
 color_thresholds = {
@@ -16,8 +15,7 @@ def find_largest_contour(mask):
         return max(contours, key=cv2.contourArea)
     return None
 
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-time.sleep(2)
+color_sent = {color: False for color in color_thresholds}
 
 cap = cv2.VideoCapture(0)
 
@@ -27,7 +25,6 @@ while True:
         break
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    detections = {}
 
     for color_name, thresholds in color_thresholds.items():
         if len(thresholds) == 4:
@@ -44,7 +41,6 @@ while True:
             mask = cv2.inRange(hsv, lower, upper)
 
         largest_contour = find_largest_contour(mask)
-        detections[color_name] = (mask, largest_contour)
 
         if largest_contour is not None and cv2.contourArea(largest_contour) > 800:
             x, y, w, h = cv2.boundingRect(largest_contour)
@@ -56,14 +52,18 @@ while True:
             }[color_name]
             cv2.rectangle(frame, (x,y), (x+w,y+h), color_bgr, 2)
             cv2.putText(frame, color_name.upper(), (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_bgr, 2)
-            code = {
-                'red': 'r',
-                'green': 'g',
-                'blue': 'b',
-                'yellow': 'y'
-            }[color_name]
-            ser.write(code.encode())
-            time.sleep(0.1)
+
+            if not color_sent[color_name]:
+                code = {
+                    'red': 'r',
+                    'green': 'g',
+                    'blue': 'b',
+                    'yellow': 'y'
+                }[color_name]
+                print(f"Detected: {color_name.upper()} — Sending: '{code}'")
+                color_sent[color_name] = True
+        else:
+            color_sent[color_name] = False
 
     cv2.imshow('Webcam', frame)
 
@@ -72,5 +72,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-ser.close()
 

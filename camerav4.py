@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import serial
 import time
 
 color_thresholds = {
@@ -15,8 +16,14 @@ def find_largest_contour(mask):
         return max(contours, key=cv2.contourArea)
     return None
 
+# Serial communication setup
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port as needed
+time.sleep(2)  # Wait for Arduino to reset and be ready
+
+# Keep track of sent signals
+color_sent = {color: False for color in color_thresholds}
+
 cap = cv2.VideoCapture(0)
-time.sleep(2)
 
 while True:
     ret, frame = cap.read()
@@ -49,9 +56,21 @@ while True:
                 'blue': (255,0,0),
                 'yellow': (0,255,255)
             }[color_name]
-            cv2.rectangle(frame, (x, y), (x + w, y + h), color_bgr, 2)
-            cv2.putText(frame, color_name.upper(), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_bgr, 2)
-            print(f"Detected {color_name}") 
+            cv2.rectangle(frame, (x,y), (x+w,y+h), color_bgr, 2)
+            cv2.putText(frame, color_name.upper(), (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_bgr, 2)
+
+            if not color_sent[color_name]:
+                code = {
+                    'red': 'r',
+                    'green': 'g',
+                    'blue': 'b',
+                    'yellow': 'y'
+                }[color_name]
+                ser.write(code.encode())
+                print(f"Detected: {color_name.upper()} — Sent: '{code}' to serial")
+                color_sent[color_name] = True
+        else:
+            color_sent[color_name] = False
 
     cv2.imshow('Webcam', frame)
 
@@ -60,3 +79,5 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+ser.close()
+
