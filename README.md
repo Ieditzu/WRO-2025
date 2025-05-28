@@ -1,6 +1,8 @@
 WRO2025 Future Engineers – Pikart
 Repository of Pikart team competing in the World Robot Olympiad (WRO) 2025, Future Engineers category.
 
+
+
 📚 Table of Contents
 👥 The Team
 🎯 Challenge Overview
@@ -35,6 +37,9 @@ Repository of Pikart team competing in the World Robot Olympiad (WRO) 2025, Futu
 📜 License
 📂 Folder Structure
 This repository is organized as follows:
+
+
+
 
 📦 WRO-2025
 ├── 📁 3D Models             # Contains 3D design files for the robot's components  
