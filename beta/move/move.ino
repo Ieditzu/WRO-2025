@@ -20,16 +20,17 @@ void setup() {
   pinMode(IN2, OUTPUT);
   pinMode(ENA, OUTPUT);
 
+  Serial.begin(9600);
+
   // Servo setup
   steeringServo.attach(SERVO_PIN);
   center();
 
-  // Initially stop
   stop();
 }
 
 void loop() {
-  // Demo movement pattern
+ /*Demo
   left();
   delay(1000);
 
@@ -42,6 +43,34 @@ void loop() {
   stop();
   center();
   delay(2000);
+*/
+
+  if (Serial.available()) {
+    char command = Serial.read();
+    switch (command) {
+      case 'f':
+        forward();
+        break;
+      case 'b':
+        backward();
+        break;
+//      case 's':
+//        stop();
+//        break;
+      case 'l':
+        left();
+        break;
+      case 'r':
+        right();
+        break;
+//      case 'c':
+//        center();
+//        break;
+      default:
+        forward();
+    }
+  }
+  delay(100);
 }
 
 void forward() {
