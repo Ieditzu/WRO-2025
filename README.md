@@ -39,6 +39,8 @@ Hi! I’m Ciprian from Romania, and this is my second WRO season. This is my fir
 *School*: Ion Jalea Middle School No. 12, Constanța  
 Hi! I’m Eduard from Romania, and this is my third WRO season with Ciprian and Alin. I have participated in RoboMission multiple times, gaining valuable experience in robotics and problem-solving.
 
+![WhatsApp Image 2025-05-28 at 21 54 13](https://github.com/user-attachments/assets/dc90fd00-9ec2-4441-911b-29a46774bdab)
+
 ---
 
 **Alin Parvu**  
@@ -112,7 +114,11 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 ## ⚙️ Components
 
-- Motor – 30:1 Micro Metal Pololu Gearmotor HPCB
+- TRUST Camera
+
+ ![image](https://github.com/user-attachments/assets/0d6c8091-42e9-4095-aba0-a974adb96e93)
+
+
 - Servo Motor MG955
 
  ![image](https://github.com/user-attachments/assets/11d42a7f-64f2-4038-b62e-221c5efcb710)
@@ -130,8 +136,13 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
   
  ![image](https://github.com/user-attachments/assets/153e4217-f7d3-4cfc-8475-6489bd2b2e20)
 
-- Operating Voltage: 2.5V–13.5V  
-- PWM Frequency: Up to 100 kHz  
+- DC Metal Motor Without Gearbox
+
+ ![image](https://github.com/user-attachments/assets/5748d149-668b-471b-8bea-d9ee378fbbc4)
+
+
+- Operating Voltage: 5V-12V
+
 
 ---
 
@@ -171,7 +182,7 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 - Battery: Li-Po 3S 450mAh (11.1V)  
 - Camera: TRUST Camera
 - 2nd Controller: Raspberry Pi 5
-- Motor driver: L29N
+- Motor driver: L298N
 
 ---
 
@@ -179,24 +190,26 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 | Component                | Voltage | Avg Current | Peak Current |
 |--------------------------|---------|-------------|--------------|
-| Arduino MEGA             | 5V      | 200mA       | 500mA        |
-| Motor Driver L298N       | 12V     | 240mA       | 3.2A         |
-| Steering Servo MG955     | 5V      | 120mA       | 500mA        |
-| TRUST Camera             | 3.3V/5V | 300mA       | 400mA        |
-| Raspberry Pi 5           | 7.4V→5V | -           | -            |
+| Arduino MEGA             | 5V      | 100 mA	     | 200 mA       |
+| Motor Driver L298N       | 5V/12V  | 240mA       | 3.2A         |
+| Steering Servo MG955     | 5V      | 500mA       | 2.5 A        |
+| TRUST Camera             | 5V      | 300mA       | 400mA        |
+| Raspberry Pi 5           | 5V      | 1.5–3A      | 5A           |
+| DC Metal Motor           | 2.5V→6V | 200 mA      | 600 mA       |
 
 ---
 ## 💰 Cost Analysis
 
 | Component                  | Qty | Unit Price | Total    |
 |----------------------------|-----|------------|----------|
-| Arduino MEGA               | 1   | $21.42     | $21.42   |
-| Raspberry Pi 5             | 1   | $22.45     | $22.45   |
-| Steering Servo (MG955)     | 1   | $4.05      | $4.05    |
-| TRUST Camera               | 1   | $80.00     | $80.00   |
+| Arduino MEGA               | 1   | $30        | $30      |
+| Raspberry Pi 5             | 1   | $80        | $80      |
+| Steering Servo (MG955)     | 1   | $5         | $5       |
+| TRUST Camera               | 1   | $10.00     | $10.00   |
 | LiPo Battery (3S 450mAh)   | 1   | $8.99      | $8.99    |
-| L298N  Motor Driver        | 1   | $1.50      | $1.50    |
-| **Total Components**       |     |            | $169.97  |
+| DC Metal Motor             | 1   | $1.99      | $1.99    |
+| L298N  Motor Driver        | 1   | $10        | $10      |
+| **Total Components**       |     |            | $145.98  |
 |                            |     |            |          |
 | **3D Printing Cost**       |     |            |          |
 | Filament (1000g, PLA)      |     |            | $10.00   |
@@ -207,7 +220,7 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 | Wiring & Connectors        |     |            | $5.00    |
 | **Total Other Materials**  |     |            | $9.00    |
 |                            |     |            |          |
-| **Grand Total**            |     |            | $194.47  |
+| **Grand Total**            |     |            | $164.98  |
 
 *Prices are approximate, based on current market rates.*
 
