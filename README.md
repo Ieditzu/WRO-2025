@@ -199,8 +199,9 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 | Motor Driver L298N       | 5V/12V  | 240mA       | 3.2A         |
 | Steering Servo MG955     | 5V      | 500mA       | 2.5 A        |
 | TRUST Camera             | 5V      | 300mA       | 400mA        |
-| Raspberry Pi 5           | 5V      | 1.5–3A      | 5A           |
+| Raspberry Pi 5           | 5V      | 2.5–3A      | 5A           |
 | DC Metal Motor           | 2.5V→6V | 200 mA      | 600 mA       |
+| Total Robot Usage Power  |         | 4.5–5 A     | 9 A          |
 
 ---
 ## 💰 Cost Analysis
