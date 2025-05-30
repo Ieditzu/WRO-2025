@@ -2,6 +2,8 @@
 
 Repository of the Pikart team competing in the World Robot Olympiad (WRO) 2025, Future Engineers category.
 
+This document describes the engineering process, components, sensing system, and control logic behind our autonomous vehicle for WRO 2025 Future Engineers. It includes technical specs, power usage, software architecture, and deployment instructions.
+
 ---
 
 ## 📚 Table of Contents
@@ -19,7 +21,7 @@ Repository of the Pikart team competing in the World Robot Olympiad (WRO) 2025, 
 - Obstacle Management
 - Cost Analysis
 - Folder Structure
-- License
+
 
 ---
 
@@ -114,6 +116,21 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 ---
 
+---
+
+## 🧠 Sensing and Perception
+
+Our robot uses a TRUST USB camera connected to the Raspberry Pi 5 for real-time image processing. Through all the libraries, the system identifies key visual cues on the racetrack, including color-coded lines and markers. Each color corresponds to a different behavior:
+
+- 🟦 Blue line: Indicates a left turn
+- 🟧 Orange line: Indicates a right turn
+- 🟥 Red sign: Indicates "stay on the right"
+- 🟩 Green sign: Indicates "stay on the left"
+
+The largest contour of the detected color is extracted and analyzed to determine the robot’s steering direction. This visual input is processed continuously while the robot is in motion, allowing for real-time decision-making and adaptive path planning.
+
+---
+
 ## 🚗 Mobility Management
 
 - Fully 3D-printed chassis
@@ -133,7 +150,7 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
  ![image](https://github.com/user-attachments/assets/11d42a7f-64f2-4038-b62e-221c5efcb710)
 
   
-- Arduino MEGA
+- Arduino MEGA 2560
 
  ![image](https://github.com/user-attachments/assets/7280ac78-b58e-419f-834f-f0dbf24b9b35)
   
@@ -172,7 +189,7 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 - 3D-Printed Chassis: Lightweight, strong, and optimized design.  
 - Component Placement: Pre-designed slots for motors, PCB, servo, and camera.  
 - Balanced Design: Central battery placement for stability.  
-- Cable Management: Integrated PCB routing, hot glue for wire security.  
+- Cable Management: Hot glue for wire security.  
 
 ---
 
@@ -234,7 +251,18 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 *Prices are approximate, based on current market rates.*
 
+---
+
 ## 📝 Obstacle Management
+
+Obstacle Challenge Handling
+
+In the Obstacle Challenge round, the robot uses the same camera vision system to interpret traffic signs placed along the track. These signs are randomly positioned and determine lane behavior:
+
+- **Red traffic marker** (🟥): Robot must keep to the **right** side of the lane.
+- **Green traffic marker** (🟩): Robot must keep to the **left** side of the lane.
+
+Upon detecting one of these signs using HSV color thresholds, the robot shifts its path accordingly using a PID steering controller. The logic is implemented entirely onboard using the Raspberry Pi 5, ensuring responsive behavior without delay.
 
 ### 🏁 Open Round
 
@@ -246,6 +274,43 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 ## 📽️ Performance Videos
 
 Watch our robot in action on YouTube!
+
+---
+
+
+## 🛠️ Code Deployment Instructions
+
+### ✅ Uploading Arduino Code
+1. Open the Arduino IDE.
+2. Connect the Arduino MEGA via USB.
+3. Open the `.ino` file located in `src/arduino-code/`.
+4. Select **Board**: Arduino Mega 2560.
+5. Select the correct **COM port**.
+6. Click **Upload**.
+
+### ✅ Running Raspberry Pi Code
+1. Power the Raspberry Pi 5 and ensure the camera is connected.
+2. Open a terminal.
+3. Run the main Python vision script:
+
+```bash
+python3 camerav4.py
+```
+
+### ✅ Python Requirements for Raspberry Pi
+
+Make sure your Pi has Python 3 and pip installed. Then run:
+
+```bash
+sudo apt update
+sudo apt install python3-opencv python3-pip -y
+pip3 install pyserial
+```
+
+This installs:
+
+- `opencv-python` → for camera and image processing
+- `pyserial` → for communication with the Arduino
 
 ---
 
