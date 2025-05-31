@@ -213,20 +213,22 @@ The largest contour of the detected color is extracted and analyzed to determine
 ---
 
 ## ⚡ Power Consumption Summary
-
+ _________________________________________________________________
+/                                                                 \
 | Component                | Voltage | Avg Current | Peak Current |
 |--------------------------|---------|-------------|--------------|
-| Arduino MEGA             | 5V      | 100 mA	     | 200 mA       |
+| Arduino MEGA             | 5V      | 100 mA	   | 200 mA       |
 | Motor Driver L298N       | 5V/12V  | 240mA       | 3.2A         |
 | Steering Servo MG955     | 5V      | 500mA       | 2.5 A        |
 | TRUST Camera             | 5V      | 300mA       | 400mA        |
 | Raspberry Pi 5           | 5V      | 2.5–3A      | 5A           |
 | DC Metal Motor           | 2.5V→6V | 200 mA      | 600 mA       |
 | Total Robot Usage Power  |         | 4.5–5 A     | 9 A          |
-
+\_________________________________________________________________/
 ---
 ## 💰 Cost Analysis
-
+ __________________________________________________________
+/                                                          \
 | Component                  | Qty | Unit Price | Total    |
 |----------------------------|-----|------------|----------|
 | Arduino MEGA               | 1   | $30        | $30      |
@@ -248,6 +250,7 @@ The largest contour of the detected color is extracted and analyzed to determine
 | **Total Other Materials**  |     |            | $9.00    |
 |                            |     |            |          |
 | **Grand Total**            |     |            | $164.98  |
+\__________________________________________________________/
 
 *Prices are approximate, based on current market rates.*
 
