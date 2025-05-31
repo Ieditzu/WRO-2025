@@ -40,7 +40,7 @@ Hi! I’m Ciprian from Romania, and this is my second WRO season. This is my fir
 
 **Eduard Perjoc**  
 *Age*: 14  
-*School*: Ion Jalea Middle School No. 12, Constanța  
+*School*: Ion Jalea Middle School No. 24, Constanța  
 Hi! I’m Eduard from Romania, and this is my third WRO season with Ciprian and Alin. I have participated in RoboMission multiple times, gaining valuable experience in robotics and problem-solving.
 
 ![WhatsApp Image 2025-05-28 at 21 54 13 (2)](https://github.com/user-attachments/assets/a2e389d9-ec24-4b05-b2e2-f3c3344d13e9)
