@@ -213,8 +213,6 @@ The largest contour of the detected color is extracted and analyzed to determine
 ---
 
 ## ⚡ Power Consumption Summary
- _________________________________________________________________
-/                                                                 \
 | Component                | Voltage | Avg Current | Peak Current |
 |--------------------------|---------|-------------|--------------|
 | Arduino MEGA             | 5V      | 100 mA	   | 200 mA       |
@@ -224,11 +222,8 @@ The largest contour of the detected color is extracted and analyzed to determine
 | Raspberry Pi 5           | 5V      | 2.5–3A      | 5A           |
 | DC Metal Motor           | 2.5V→6V | 200 mA      | 600 mA       |
 | Total Robot Usage Power  |         | 4.5–5 A     | 9 A          |
-\_________________________________________________________________/
 ---
 ## 💰 Cost Analysis
- __________________________________________________________
-/                                                          \
 | Component                  | Qty | Unit Price | Total    |
 |----------------------------|-----|------------|----------|
 | Arduino MEGA               | 1   | $30        | $30      |
@@ -250,7 +245,6 @@ The largest contour of the detected color is extracted and analyzed to determine
 | **Total Other Materials**  |     |            | $9.00    |
 |                            |     |            |          |
 | **Grand Total**            |     |            | $164.98  |
-\__________________________________________________________/
 
 *Prices are approximate, based on current market rates.*
 
@@ -286,7 +280,7 @@ Watch our robot in action on YouTube!
 ### ✅ Uploading Arduino Code
 1. Open the Arduino IDE.
 2. Connect the Arduino MEGA via USB.
-3. Open the `.ino` file located in `src/arduino-code/`.
+3. Open the `.ino` file located in `src/move/`.
 4. Select **Board**: Arduino Mega 2560.
 5. Select the correct **COM port**.
 6. Click **Upload**.
@@ -298,6 +292,7 @@ Watch our robot in action on YouTube!
 
 ```bash
 python3 camerav4.py
+TODO
 ```
 
 ### ✅ Python Requirements for Raspberry Pi
@@ -306,8 +301,8 @@ Make sure your Pi has Python 3 and pip installed. Then run:
 
 ```bash
 sudo apt update
-sudo apt install python3-opencv python3-pip -y
-pip3 install pyserial
+sudo apt install python3-pip -y
+pip3 install pyserial opencv-python
 ```
 
 This installs:
