@@ -2,7 +2,10 @@ import cv2
 import numpy as np
 
 color_thresholds = {
-    'yellow': [(20, 100, 100), (30, 255, 255)]
+    'yellow': [(20, 100, 100), (30, 255, 255)],
+    'red':    [(0, 120, 70), (10, 255, 255), (170, 120, 70), (180, 255, 255)],
+    'green':  [(36, 50, 50), (89, 255, 255)],
+    'blue':   [(90, 50, 50), (140, 255, 255)]
 }
 
 REAL_WIDTH_CM = 3.0
@@ -35,7 +38,7 @@ while True:
         cv2.putText(frame, f"YELLOW {distance_cm:.1f}cm", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
 
         if distance_cm < DISTANCE_THRESHOLD_CM and not sent_turn_signal:
-            print("TURN LEFT")
+            print("TURN RIGHT")
             sent_turn_signal = True
         elif distance_cm >= DISTANCE_THRESHOLD_CM:
             sent_turn_signal = False
