@@ -114,6 +114,15 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 ## 🤖 Our Robot
 
+![image](https://github.com/user-attachments/assets/ae65ed7d-a220-4b51-ac3c-c2f960def2b0) ![image](https://github.com/user-attachments/assets/6c25630d-5f6e-42e1-8558-7109089544ba) ![image](https://github.com/user-attachments/assets/055c4b82-7657-4c5f-8424-1b6494587704) ![image](https://github.com/user-attachments/assets/2fc4e58d-7893-4054-a242-433f2e4746f8) ![image](https://github.com/user-attachments/assets/9bdd0f77-bbfa-4852-8850-e6d1a5ece047) ![image](https://github.com/user-attachments/assets/1d437515-d427-4683-847c-d658b3240dd1)
+
+
+ 
+
+
+
+
+
 ---
 
 ---
