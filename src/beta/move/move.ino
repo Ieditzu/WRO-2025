@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-// Motor driver pins
+// Motor driver pins (L298N)
 const int IN1 = 7;
 const int IN2 = 8;
 const int ENA = 9;  // Enable pin (PWM capable)
@@ -30,59 +30,33 @@ void setup() {
 }
 
 void loop() {
- /*Demo
-  left();
-  delay(1000);
-
-  forward();
-  delay(2000);
-
-  right();
-  delay(1000);
-
-  stop();
-  center();
-  delay(2000);
-*/
-
   if (Serial.available()) {
     char command = Serial.read();
     switch (command) {
-      case 'f':
+      case 'g':
         forward();
-        break;
-      case 'b':
-        backward();
-        break;
-//      case 's':
-//        stop();
-//        break;
-      case 'l':
-        left();
         break;
       case 'r':
-        right();
+        ocolireDreapta(); // când primește 'r', face ocolirea
         break;
-//      case 'c':
-//        center();
-//        break;
       default:
-        forward();
+        forward();  
     }
   }
+
   delay(100);
 }
 
 void forward() {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
-  analogWrite(ENA, 150);  // Adjust speed (0-255)
+  analogWrite(ENA, 250);  // Ajustează viteza
 }
 
 void backward() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
-  analogWrite(ENA, 150);  // Adjust speed (0-255)
+  analogWrite(ENA, 250);
 }
 
 void stop() {
@@ -101,4 +75,34 @@ void right() {
 
 void center() {
   steeringServo.write(STEERING_CENTER);
+}
+
+void ocolireDreapta() {
+  right();
+  forward();
+  delay(800);
+
+  left();
+  delay(300);
+
+  forward();
+  delay(800);
+
+  center();
+  stop();
+}
+
+void ocolireStanga() {
+  left();
+  forward();
+  delay(800);
+
+  right();
+  delay(300);
+
+  forward();
+  delay(800);
+
+  center();
+  stop();
 }
