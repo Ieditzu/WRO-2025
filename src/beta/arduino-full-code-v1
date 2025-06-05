@@ -1,0 +1,131 @@
+#include <Servo.h>
+
+// Motor driver pins (L298N)
+const int IN1 = 7;
+const int IN2 = 8;
+const int ENA = 9;  // PWM pentru motor
+
+// Servo setup
+const int SERVO_PIN = 10;
+Servo steeringServo;
+
+// Unghiuri servo calibrate
+#define STEERING_LEFT 85
+#define STEERING_CENTER 93
+#define STEERING_RIGHT 100
+
+void setup() {
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(ENA, OUTPUT);
+
+  Serial.begin(9600);
+
+  steeringServo.attach(SERVO_PIN);
+  center();  // servo la mijloc
+  stop();    // motor oprit
+}
+
+void loop() {
+  if (Serial.available()) {
+    char command = Serial.read();
+    Serial.print("Comanda primita: ");
+    Serial.println(command);
+
+    switch (command) {
+      case 'g':  // Go forward
+        forward();
+        center();
+        break;
+
+      case 's':  // Stop
+        stop();
+        break;
+
+      case 'l':  // Left turn
+        forward();
+        left();
+        break;
+
+      case 'r':  // Right turn
+        forward();
+        right();
+        break;
+
+      case 'o':  // Ocolire dreapta
+        ocolireDreapta();
+        break;
+
+      case 'x':  // Ocolire stanga (opțional)
+        ocolireStanga();
+        break;
+
+      default:
+        Serial.println("Comanda necunoscuta.");
+        break;
+    }
+  }
+}
+
+// =====================
+// === Funcții motor ===
+// =====================
+void forward() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 250);  // Viteză
+}
+
+void stop() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 0);
+}
+
+// ======================
+// === Funcții servo ===
+// ======================
+void left() {
+  steeringServo.write(STEERING_LEFT);
+}
+
+void right() {
+  steeringServo.write(STEERING_RIGHT);
+}
+
+void center() {
+  steeringServo.write(STEERING_CENTER);
+}
+
+// ==========================
+// === Secvență ocolire ===
+// ==========================
+void ocolireDreapta() {
+  right();
+  forward();
+  delay(800);
+
+  left();
+  delay(300);
+
+  forward();
+  delay(800);
+
+  center();
+  stop();
+}
+
+void ocolireStanga() {
+  left();
+  forward();
+  delay(800);
+
+  right();
+  delay(300);
+
+  forward();
+  delay(800);
+
+  center();
+  stop();
+}
