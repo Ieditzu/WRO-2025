@@ -4,41 +4,59 @@ import os
 import time
 import serial
 
-# Open serial port (adjust to your port, e.g., 'COM3' or '/dev/ttyUSB0')
+# Open serial port (adjust this!)
 ser = serial.Serial('/dev/ttyUSB0', 9600)
 time.sleep(2)
 
-# Resize terminal (macOS/Linux)
+# Resize terminal
 os.system("printf '\033[8;50;120t'")
 
 ASCII_CHARS = "@%#*+=-:. "
 WIDTH = 120
 HEIGHT = 40
 
-def rgb_to_ansi(r, g, b):
-    return f"\033[38;2;{r};{g};{b}m"
-
-def frame_to_colored_ascii(frame):
-    frame = cv2.resize(frame, (WIDTH, HEIGHT))
-    ascii_img = ""
-    for row in frame:
-        for b, g, r in row:
-            gray = int(0.2989 * r + 0.5870 * g + 0.1140 * b)
-            char = ASCII_CHARS[gray * len(ASCII_CHARS) // 256]
-            ascii_img += rgb_to_ansi(r, g, b) + char
-        ascii_img += "\n"
-    return ascii_img + "\033[0m"
-
-# HSV color detection ranges
 color_ranges = {
     "Red": [(np.array([0, 120, 70]), np.array([10, 255, 255])),
             (np.array([170, 120, 70]), np.array([180, 255, 255]))],
     "Green": [(np.array([35, 50, 70]), np.array([85, 255, 255]))],
     "Blue": [(np.array([90, 60, 70]), np.array([130, 255, 255]))]
 }
-
 color_codes = {"Red": b'R', "Green": b'G', "Blue": b'B', "None": b'N'}
 prev_color = None
+
+def rgb_to_ansi(r, g, b):
+    return f"\033[38;2;{r};{g};{b}m"
+
+def frame_to_colored_ascii(frame):
+    resized = cv2.resize(frame, (WIDTH, HEIGHT))
+    hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
+    ascii_img = ""
+
+    for y in range(resized.shape[0]):
+        for x in range(resized.shape[1]):
+            b, g, r = resized[y, x]
+            h, s, v = hsv[y, x]
+            gray = int(0.2989 * r + 0.5870 * g + 0.1140 * b)
+            char = ASCII_CHARS[gray * len(ASCII_CHARS) // 256]
+
+            color = "Unknown"
+            for name, ranges in color_ranges.items():
+                for lower, upper in ranges:
+                    if cv2.inRange(np.uint8([[hsv[y, x]]]), lower, upper)[0][0] > 0:
+                        color = name
+                        break
+                if color != "Unknown":
+                    break
+
+            if color in color_codes:
+                ansi = rgb_to_ansi(r, g, b)
+            else:
+                ansi = "\033[38;2;255;255;255m"  # White
+
+            ascii_img += ansi + char
+        ascii_img += "\n"
+
+    return ascii_img + "\033[0m"
 
 def detect_color(hsv_frame):
     for color, ranges in color_ranges.items():
