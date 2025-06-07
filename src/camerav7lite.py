@@ -2,6 +2,11 @@ import cv2
 import numpy as np
 import os
 import time
+import serial
+
+# Serial setup (adjust the port!)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
+time.sleep(2)
 
 # Resize terminal
 os.system("printf '\033[8;50;120t'")
@@ -10,12 +15,15 @@ ASCII_CHARS = "@%#*+=-:. "
 WIDTH = 120
 HEIGHT = 40
 
+# Only Red and Green ranges
 color_ranges = {
     "Red": [(np.array([0, 120, 70]), np.array([10, 255, 255])),
             (np.array([170, 120, 70]), np.array([180, 255, 255]))],
-    "Green": [(np.array([35, 50, 70]), np.array([85, 255, 255]))],
-    "Blue": [(np.array([90, 60, 70]), np.array([130, 255, 255]))]
+    "Green": [(np.array([35, 50, 70]), np.array([85, 255, 255]))]
 }
+
+color_codes = {"Red": b'R', "Green": b'G', "None": b'N'}
+prev_color = None
 
 def rgb_to_ansi(r, g, b):
     return f"\033[38;2;{r};{g};{b}m"
@@ -41,10 +49,10 @@ def frame_to_colored_ascii(frame):
                 if color != "Unknown":
                     break
 
-            if color in color_ranges:
+            if color in color_codes:
                 ansi = rgb_to_ansi(r, g, b)
             else:
-                ansi = "\033[38;2;255;255;255m"  # White
+                ansi = "\033[38;2;255;255;255m"  # white for unknown
 
             ascii_img += ansi + char
         ascii_img += "\n"
@@ -72,15 +80,19 @@ try:
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         detected_color = detect_color(hsv)
 
+        if detected_color != prev_color:
+            ser.write(color_codes[detected_color])
+            prev_color = detected_color
+
         ascii_frame = frame_to_colored_ascii(frame)
         os.system("clear")
         print(ascii_frame)
         print(f"\033[1mDetected Color:\033[0m {detected_color}")
-        time.sleep(0.05)
 
 except KeyboardInterrupt:
     pass
 finally:
     cap.release()
+    ser.close()
     os.system("clear")
 
