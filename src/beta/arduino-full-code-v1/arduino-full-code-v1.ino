@@ -64,35 +64,35 @@ void loop() {
     
     // Interpretează comanda primită
     switch (command) {
-      case 'g':  // Avans înainte cu servo centrat
+      case 'c':  // Avans înainte cu servo centrat TODO
         motorForward();
         servoCenter();
         break;
         
-      case 's':  // Oprește motorul
+      case 's':  // Oprește motorul TODO
         motorStop();
         break;
         
-      case 'l':  // Virare stânga: motor înainte + servo la stânga
+      case 'l':  // Virare stânga: motor înainte + servo la stânga TODO
         motorForward();
         servoLeft();
         break;
         
-      case 'r':  // Virare dreapta: motor înainte + servo la dreapta
+      case 'd':  // Virare dreapta: motor înainte + servo la dreapta TODO
         motorForward();
         servoRight();
         break;
         
-      case 'o':  // Manevră de ocolire spre dreapta
+      case 'r':  // Manevră de ocolire spre dreapta
         performBypassRight();
         break;
         
-      case 'x':  // Manevră de ocolire spre stânga
+      case 'g':  // Manevră de ocolire spre stânga
         performBypassLeft();
         break;
         
       default:
-        Serial.println("Comandă necunoscută.");
+        motorForward();
         break;
     }
   }
