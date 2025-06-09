@@ -6,7 +6,7 @@ const int S0 = 2;
 const int S1 = 3;
 const int S2 = 4;
 const int S3 = 5;
-const int sensorOut = 8;
+const int sensorOut = 48;
 
 int redFrequency = 0;
 int greenFrequency = 0;
