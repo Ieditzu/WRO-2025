@@ -151,8 +151,7 @@ The largest contour of the detected color is extracted and analyzed to determine
 
 - HUSKYLENS Camera
 
-(![image](https://github.com/user-attachments/assets/704d36e5-30b8-4164-8c7b-d786da3f6dbf)
-)
+![image](https://github.com/user-attachments/assets/41445e3f-0f54-4083-a514-735d38b13e75)
 
 
 - Servo Motor MG996
