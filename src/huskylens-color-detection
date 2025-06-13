@@ -1,0 +1,60 @@
+#include "HUSKYLENS.h"
+#include "SoftwareSerial.h"
+
+HUSKYLENS huskylens;
+SoftwareSerial mySerial(10, 11); // RX, TX (Arduino <-> HuskyLens)
+
+void setup() {
+  Serial.begin(9600);       // Start serial monitor
+  mySerial.begin(9600);     // Start serial communication with HuskyLens
+
+  // Try connecting to HuskyLens until successful
+  while (!huskylens.begin(mySerial)) {
+    Serial.println(F("Failed to connect to HuskyLens. Check connections!"));
+    delay(1000);
+  }
+
+  Serial.println(F("HuskyLens is connected!"));
+}
+
+void loop() {
+  // Request data from HuskyLens
+  if (!huskylens.request()) {
+    Serial.println(F("Error requesting data"));
+  } 
+  // No object (color) detected
+  else if (!huskylens.available()) {
+    Serial.println(F("No color detected"));
+  } 
+  else {
+    // Read detected result
+    HUSKYLENSResult result = huskylens.read();
+
+    if (result.command == COMMAND_RETURN_BLOCK) {
+      int id = result.ID;
+      String colorName;
+
+      // Assign color name based on ID trained in HuskyLens
+      switch(id) {
+        case 1:
+          colorName = "Red";
+          break;
+        case 2:
+          colorName = "Yellow";
+          break;
+        case 3:
+          colorName = "Green";
+          break;
+        case 4:
+          colorName = "Blue";
+          break;
+        default:
+          colorName = "Unknown color (ID " + String(id) + ")";
+      }
+
+      Serial.println("Detected color: " + colorName);
+    }
+  }
+
+  delay(300); // Small delay to avoid flooding serial output
+}
