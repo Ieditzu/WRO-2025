@@ -17,9 +17,9 @@ const int MOTOR_ENA = 9;      // PWM for speed control
 const int SERVO_PIN = 10;      // Steering servo pin
 
 // Define servo angles for steering
-const int SERVO_LEFT   = 85;  // Turn left
-const int SERVO_CENTER = 93;  // Go straight
-const int SERVO_RIGHT  = 100; // Turn right
+const int SERVO_LEFT   = 40;  // Turn left
+const int SERVO_CENTER = 60;  // Go straight
+const int SERVO_RIGHT  = 90; // Turn right
 
 // Define motor speed (0–255)
 const int MOTOR_SPEED = 255;
