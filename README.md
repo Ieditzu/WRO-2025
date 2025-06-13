@@ -129,7 +129,7 @@ Based on accuracy, technical documentation, speed, innovation, and teamwork.
 
 ## 🧠 Sensing and Perception
 
-Our robot uses a TRUST USB camera connected to the Raspberry Pi 5 for real-time image processing. Through all the libraries, the system identifies key visual cues on the racetrack, including color-coded lines and markers. Each color corresponds to a different behavior:
+Our robot uses an HUSKYLENS camera connected to the ARDUINO MEGA 2560 for real-time image processing. Through all the libraries, the system identifies key visual cues on the racetrack, including color-coded lines and markers. Each color corresponds to a different behavior:
 
 - 🟦 Blue line: Indicates a left turn
 - 🟧 Orange line: Indicates a right turn
@@ -149,14 +149,16 @@ The largest contour of the detected color is extracted and analyzed to determine
 
 ## ⚙️ Components
 
-- TRUST Camera
+- HUSKYLENS Camera
 
- ![image](https://github.com/user-attachments/assets/0d6c8091-42e9-4095-aba0-a974adb96e93)
+(![image](https://github.com/user-attachments/assets/704d36e5-30b8-4164-8c7b-d786da3f6dbf)
+)
 
 
-- Servo Motor MG955
+- Servo Motor MG996
 
- ![image](https://github.com/user-attachments/assets/11d42a7f-64f2-4038-b62e-221c5efcb710)
+(![image](https://github.com/user-attachments/assets/a44398ef-df68-40bc-88f1-a2da52490220))
+
 
   
 - Arduino MEGA 2560
@@ -186,7 +188,7 @@ The largest contour of the detected color is extracted and analyzed to determine
 - Parallelogram Steering Mechanism  
 - Both front wheels turn at the same angle for stability and precision.  
 - Direct servo linkage for immediate response.  
-- Steering Servo – MG955  
+- Steering Servo – MG996  
 - Voltage: 5V  
 - Torque: 2.2 kg/cm  
 - Gears: Metal  
@@ -214,9 +216,8 @@ The largest contour of the detected color is extracted and analyzed to determine
 ## 🛠️ Power and Sense Management
 
 - Controller: Arduino MEGA
-- Battery: Li-Po 3S 450mAh (11.1V)  
-- Camera: TRUST Camera
-- 2nd Controller: Raspberry Pi 5
+- Battery: GH 18650 9900mAh 3.7v x3
+- Camera: HUSKYLENS Camera
 - Motor driver: L298N
 
 ---
@@ -224,25 +225,23 @@ The largest contour of the detected color is extracted and analyzed to determine
 ## ⚡ Power Consumption Summary
 | Component                | Voltage | Avg Current | Peak Current |
 |--------------------------|---------|-------------|--------------|
-| Arduino MEGA             | 5V      | 100 mA	   | 200 mA       |
+| Arduino MEGA             | 5V      | 100 mA	     | 200 mA       |
 | Motor Driver L298N       | 5V/12V  | 240mA       | 3.2A         |
 | Steering Servo MG955     | 5V      | 500mA       | 2.5 A        |
-| TRUST Camera             | 5V      | 300mA       | 400mA        |
-| Raspberry Pi 5           | 5V      | 2.5–3A      | 5A           |
+| HUSKYLENS Camera         | 5V      | 500mA       | 600mA        |
 | DC Metal Motor           | 2.5V→6V | 200 mA      | 600 mA       |
-| Total Robot Usage Power  |         | 4.5–5 A     | 9 A          |
+| Total Robot Usage Power  |         | 2.5-3A      | 7 A          |
 ---
 ## 💰 Cost Analysis
 | Component                  | Qty | Unit Price | Total    |
 |----------------------------|-----|------------|----------|
 | Arduino MEGA               | 1   | $30        | $30      |
-| Raspberry Pi 5             | 1   | $80        | $80      |
 | Steering Servo (MG955)     | 1   | $5         | $5       |
-| TRUST Camera               | 1   | $10.00     | $10.00   |
-| LiPo Battery (3S 450mAh)   | 1   | $8.99      | $8.99    |
+| HUSKYLENS Camera           | 1   | $80.00     | $80.00   |
+| GH 18650 9900mAh 3.7v x3   | 1   | $2         | $6       |
 | DC Metal Motor             | 1   | $1.99      | $1.99    |
 | L298N  Motor Driver        | 1   | $10        | $10      |
-| **Total Components**       |     |            | $145.98  |
+| **Total Components**       |     |            | $132.99  |
 |                            |     |            |          |
 | **3D Printing Cost**       |     |            |          |
 | Filament (1000g, PLA)      |     |            | $10.00   |
@@ -253,7 +252,7 @@ The largest contour of the detected color is extracted and analyzed to determine
 | Wiring & Connectors        |     |            | $5.00    |
 | **Total Other Materials**  |     |            | $9.00    |
 |                            |     |            |          |
-| **Grand Total**            |     |            | $164.98  |
+| **Grand Total**            |     |            | $151.99  |
 
 *Prices are approximate, based on current market rates.*
 
@@ -294,36 +293,11 @@ Watch our robot in action on YouTube!
 5. Select the correct **COM port**.
 6. Click **Upload**.
 
-### ✅ Running Raspberry Pi Code
-1. Power the Raspberry Pi 5 and ensure the camera is connected.
-2. Open a terminal.
-3. Run the main Python vision script:
 
-```bash
-python3 camerav4.py
-TODO
-```
-
-### ✅ Python Requirements for Raspberry Pi
-
-Make sure your Pi has Python 3 and pip installed. Then run:
-
-```bash
-sudo apt update
-sudo apt install python3-pip -y
-pip3 install pyserial opencv-python
-```
-
-This installs:
-
-- `opencv-python` → for camera and image processing
-- `pyserial` → for communication with the Arduino
-
----
 
 ## ⚡ Final Round
 
-_To be completed – How the robot handles the final round challenges._
+Our robot will use all the knowledge from the other rounds and will succesfully pass through it
 
 ---
 
@@ -335,100 +309,77 @@ _To be completed – How the robot handles the final round challenges._
 
 ## 🅿️ Parking
 
-_To be completed – How the robot executes parallel parking._
+The robot detects the nearby colors and adjusts itself so he could fit properly into the parking slot
 
 ---
 
 
 
 **Camera Processing (Sample Code):**
-```python
- import cv2
-import numpy as np
-import serial
-import time
+```c++
+#include "HUSKYLENS.h"
+#include "SoftwareSerial.h"
 
-color_thresholds = {
-    'red':    [(0, 120, 70), (10, 255, 255), (170, 120, 70), (180, 255, 255)],
-    'green':  [(36, 50, 50), (89, 255, 255)],
-    'blue':   [(90, 50, 50), (140, 255, 255)],
-    'yellow': [(20, 100, 100), (30, 255, 255)]
+HUSKYLENS huskylens;
+SoftwareSerial mySerial(10, 11); // RX, TX (Arduino <-> HuskyLens)
+
+void setup() {
+  Serial.begin(9600);       // Start serial monitor
+  mySerial.begin(9600);     // Start serial communication with HuskyLens
+
+  // Try connecting to HuskyLens until successful
+  while (!huskylens.begin(mySerial)) {
+    Serial.println(F("Failed to connect to HuskyLens. Check connections!"));
+    delay(1000);
+  }
+
+  Serial.println(F("HuskyLens is connected!"));
 }
 
-def find_largest_contour(mask):
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    if contours:
-        return max(contours, key=cv2.contourArea)
-    return None
+void loop() {
+  // Request data from HuskyLens
+  if (!huskylens.request()) {
+    Serial.println(F("Error requesting data"));
+  } 
+  // No object (color) detected
+  else if (!huskylens.available()) {
+    Serial.println(F("No color detected"));
+  } 
+  else {
+    // Read detected result
+    HUSKYLENSResult result = huskylens.read();
 
-# Serial communication setup
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port as needed
-time.sleep(2)  # Wait for Arduino to reset and be ready
+    if (result.command == COMMAND_RETURN_BLOCK) {
+      int id = result.ID;
+      String colorName;
 
-# Keep track of sent signals
-color_sent = {color: False for color in color_thresholds}
+      // Assign color name based on ID trained in HuskyLens
+      switch(id) {
+        case 1:
+          colorName = "Red";
+          break;
+        case 2:
+          colorName = "Yellow";
+          break;
+        case 3:
+          colorName = "Green";
+          break;
+        case 4:
+          colorName = "Blue";
+          break;
+        default:
+          colorName = "Unknown color (ID " + String(id) + ")";
+      }
 
-cap = cv2.VideoCapture(0)
+      Serial.println("Detected color: " + colorName);
+    }
+  }
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-    for color_name, thresholds in color_thresholds.items():
-        if len(thresholds) == 4:
-            lower1 = np.array(thresholds[0])
-            upper1 = np.array(thresholds[1])
-            lower2 = np.array(thresholds[2])
-            upper2 = np.array(thresholds[3])
-            mask1 = cv2.inRange(hsv, lower1, upper1)
-            mask2 = cv2.inRange(hsv, lower2, upper2)
-            mask = cv2.bitwise_or(mask1, mask2)
-        else:
-            lower = np.array(thresholds[0])
-            upper = np.array(thresholds[1])
-            mask = cv2.inRange(hsv, lower, upper)
-
-        largest_contour = find_largest_contour(mask)
-
-        if largest_contour is not None and cv2.contourArea(largest_contour) > 800:
-            x, y, w, h = cv2.boundingRect(largest_contour)
-            color_bgr = {
-                'red': (0,0,255),
-                'green': (0,255,0),
-                'blue': (255,0,0),
-                'yellow': (0,255,255)
-            }[color_name]
-            cv2.rectangle(frame, (x,y), (x+w,y+h), color_bgr, 2)
-            cv2.putText(frame, color_name.upper(), (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_bgr, 2)
-
-            if not color_sent[color_name]:
-                code = {
-                    'red': 'r',
-                    'green': 'g',
-                    'blue': 'b',
-                    'yellow': 'y'
-                }[color_name]
-                ser.write(code.encode())
-                print(f"Detected: {color_name.upper()} — Sent: '{code}' to serial")
-                color_sent[color_name] = True
-        else:
-            color_sent[color_name] = False
-
-    cv2.imshow('Webcam', frame)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()
-ser.close()
+  delay(300); // Small delay to avoid flooding serial output
+}
 
 ```
-The full part of the code uses computer vision to detect colored objects in a video stream and sends corresponding signals to an Arduino via serial communication. 
-It defines color thresholds, sets up serial, and processes each frame to detect and label objects, sending codes to the Arduino for new detections.
-The script imports libraries, sets up serial, and enters a loop to process frames. It converts to HSV, creates masks, finds contours, and draws rectangles around large enough objects, sending codes to the Arduino.
-
+The full Arduino sketch enables color object detection using the HuskyLens AI camera and processes the results over serial communication.
+It listens for objects recognized by the HuskyLens (in Color Recognition Mode) and identifies their IDs (each linked to a specific trained color: red, yellow, green, blue). 
+Then it outputs those detections via the serial monitor.
 
