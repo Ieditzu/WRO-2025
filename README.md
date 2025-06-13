@@ -65,7 +65,7 @@ WRO-2025
 │   ├── robot-photos/      # Robot photos
 │   ├── team-photos/       # Team photos
 │   └── video/             # Recorded testing
-├── other/                 # Miscellaneous files
+├── other/                 # Contains files that don't have anything to do with the robot
 ├── src/                   # Main robot source code
 └── README.md              # Main documentation
 ```
