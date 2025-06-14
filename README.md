@@ -93,7 +93,7 @@ Detect and respond to red and green traffic signs while completing 3 laps:
 - 🟩 Green traffic sign: Stay on the left side.
 - Using color detection to read the traffic signs
 - The steering logic adjust to the lane based on the detected color
-- This process is performed in real-time using the camera and Raspberry Pi
+- This process is performed in real-time using the Husky Lens
   
 **🅿️ Parking:**
 Locate and perform a precise parallel parking maneuver after laps.
@@ -302,7 +302,7 @@ Our robot will use all the knowledge from the other rounds and will succesfully 
 
 ## 🅿️ Starting from Parking
 
-- Goes straight forward and then wait for serial communication betwen arduino and raspberry for it to turn
+- Goes straight forward and then wait for SoftSerial communication betwen Arduino Mega and HuskyLens
 
 ---
 
