@@ -22,7 +22,6 @@ This document describes the engineering process, components, sensing system, and
 - Cost Analysis
 - Folder Structure
 
-
 ---
 
 ## 👥 The Team
@@ -205,10 +204,27 @@ The largest contour of the detected color is extracted and analyzed to determine
 
 ## 🔧 Assembly Process
 
-1. Mount drive motor using bracket.
-2. Secure steering servo in slot with screws.
-3. Place battery in center compartment.
-4. Use hot glue for cable management.
+
+1. **3D Print Parts**  
+   Print all necessary chassis pieces listed for Pikart (e.g., `main_chassis`, `front_section`, `rear_section`, `side_left`, `side_right`).
+
+2. **Prepare Electronics**  
+   Gather all required RC electronics such as the motor, Huskylens, servo, receiver, and powerbank.
+
+3. **Assemble Chassis**  
+   Attach the main chassis components together (`main_chassis`, `front_section`, `rear_section`), ensuring correct alignment for your MG996 Servo.
+
+4. **Mount Side Panels**  
+   Secure the left and right side panels (`side_left`, `side_right`) to the chassis body.
+
+5. **Install Electronics**  
+   Place the servo, motor, dual motor driver and HuskyLens Camera into their designated mounts or compartments within the chassis.
+
+6. **Connect Wiring**  
+   Connect the electronics according to your RC system’s wiring diagram or requirements.
+
+7. **Final Checks**  
+   Tighten all screws, ensure all parts are securely fastened, and verify that the electronics function correctly before first use.
 
 ---
 
